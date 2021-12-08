@@ -10,21 +10,25 @@
 /* Konstanty */
 
 #define BEZ_CHYBY "Bez chyby.\n";
-#define CHYBA ALOKACE "Chyba alokace.\n";
+#define CHYBA_ALOKACE "Chyba alokace.\n";
 #define CHYBA_OTEVRENI "Chyba otevreni.\n";
 #define CHYBA_ZAVRENI "Chyba zavreni.\n";
 #define CHYBA_TYPU "Chyba typu.\n";
-#define CHYBA JINA "Chyba jina.\n";
+#define CHYBA_JINA "Chyba jina.\n";
 
 /* Globalni promenne */
 
-int chyba = 0;
+// uchovava, zda v poslednı operaci nedoslo k nejake chybe
+int chyba;
 
 /* Definice struktury */
 
 typedef struct {
+    // velikost radky
     int m;
+    // velikost sloupce
     int n;
+    // prvky matice v dvourozmernem poli
     float data;
 } matice;
 
@@ -33,6 +37,7 @@ typedef struct {
 matice inicializace(int m, int n);
 matice nulova(int m, int n);
 matice jednotkova(int m, int n);
+/*
 void odstran(matice mat);
 void vypis(matice mat);
 matice plus(matice mat1, matice mat2);
@@ -45,4 +50,4 @@ matice uloz_do_souboru(matice mat, const char *soubor);
 int velikost(matice mat, int dimenze);
 float prvek(matice mat, int i, int j);
 void nastav_prvek(matice mat, int i, int j, float hodnota);
-
+*/
