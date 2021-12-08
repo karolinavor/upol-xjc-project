@@ -7,30 +7,42 @@
 * Modul pro praci s maticemi
 **/
 
-struct matrix
-{
-    /** @brief ID objektu */
-    int id;
-    /** @brief Souřadnice X */
+/* Konstanty */
+
+#define BEZ_CHYBY "Bez chyby.\n";
+#define CHYBA ALOKACE "Chyba alokace.\n";
+#define CHYBA_OTEVRENI "Chyba otevreni.\n";
+#define CHYBA_ZAVRENI "Chyba zavreni.\n";
+#define CHYBA_TYPU "Chyba typu.\n";
+#define CHYBA JINA "Chyba jina.\n";
+
+/* Globalni promenne */
+
+int chyba = 0;
+
+/* Definice struktury */
+
+typedef struct {
     int m;
-    /** @brief Souřadnice Y */
     int n;
-};
+    float data;
+} matice;
 
-/**
- * @brief  Inicializuje matici.
- *
- * @param c1 ukazatel na první objekt
- * @param c2 ukazatel na druhý objekt
- * @return vraci matici
-*/
-float init_matrix(float c1, float c2);
+/* Definice funkci */
 
-/**
- * @brief Hlavní funkce programu, spouští se jako první.
- * @param argc počet argumentů příkazové řádky
- * @param argv pole argumentů příkazové řádky
- *
- * @return při úspěšném ukončení vrací 0, při neúspěšném -1
- */
-int main(int argc, char *argv[]);
+matice inicializace(int m, int n);
+matice nulova(int m, int n);
+matice jednotkova(int m, int n);
+void odstran(matice mat);
+void vypis(matice mat);
+matice plus(matice mat1, matice mat2);
+matice minus(matice mat1, matice mat2);
+matice nasobeni(matice mat, float skalar);
+matice transpozice(matice mat);
+matice krat(matice mat1, matice mat2);
+matice nacti_ze_souboru(const char *soubor);
+matice uloz_do_souboru(matice mat, const char *soubor);
+int velikost(matice mat, int dimenze);
+float prvek(matice mat, int i, int j);
+void nastav_prvek(matice mat, int i, int j, float hodnota);
+
