@@ -18,16 +18,13 @@ matice* inicializace(int m, int n) {
         //ERROR
     }
      */
-
     matice* nova_matice = calloc(1, sizeof(*nova_matice));
     nova_matice->m = m;
     nova_matice->n = n;
-
     nova_matice->data = calloc(nova_matice->m, sizeof(*nova_matice->data));
     for(int i = 0; i < nova_matice->m; ++i) {
         nova_matice->data[i] = calloc(nova_matice->n, sizeof(**nova_matice->data));
     }
-
     /*
     if (!nova_matice.data || !nova_matice) //?
     {
@@ -36,17 +33,14 @@ matice* inicializace(int m, int n) {
         //ERROR
     }
     */
-
     return nova_matice;
 };
 
 // funkce vytvorı jednotkovou matici typu m × n
 matice* jednotkova(int m, int n) {
     matice* nova_matice = inicializace(m, n);
-
-    int i, j;
-    for (i = 0; i < m; i++) {
-        for (j = 0; j < n; j++) {
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
             if (i == j) {
                 nova_matice->data[i][j] = 1;
             } else {
@@ -54,21 +48,17 @@ matice* jednotkova(int m, int n) {
             }
         }
     }
-
     return nova_matice;
 };
 
 // funkce vytvorı nulovou matici typu m × n
 matice* nulova(int m, int n) {
     matice* nova_matice = inicializace(m, n);
-
-    int i, j;
-    for (i = 0; i < m; i++) {
-        for (j = 0; j < n; j++) {
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
             nova_matice->data[i][j] = 0;
         }
     }
-
     return nova_matice;
 };
 
@@ -102,12 +92,13 @@ void nastav_prvek(matice* mat, int i, int j, float hodnota) {
 
 // funkce, ktera vracı matici, ktera vznikla transpozicı matice mat
 matice* transpozice(matice* mat) {
+    matice* trans_matice = inicializace(mat->n, mat->m);
     for(int i = 0; i < mat->m; i++) {
         for(int j = 0; j < mat->n; j++) {
-            mat->data[i][j] = mat->data[j][i];
+            trans_matice->data[j][i] = mat->data[i][j];
         }
     }
-    return mat;
+    return trans_matice;
 };
 
 /*
