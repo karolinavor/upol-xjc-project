@@ -13,9 +13,11 @@
 
 int main()
 {
-    matice mat1, mat2, mat3, mat4, mat5, mat6;
-    mat1 = jednotkova(3, 4);
+    matice* mat1, mat2, mat3, mat4, mat5, mat6;
+    mat1 = inicializace(2, 3);
+    //vypis(mat1);
     /*
+    mat1 = jednotkova(3, 4);
     nastav_prvek(mat1, 0, 1, 2);
     nastav_prvek(mat1, 0, 2, 3);
     nastav_prvek(mat1, 0, 3, 4);

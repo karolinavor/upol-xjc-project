@@ -29,16 +29,16 @@ typedef struct {
     // sloupce
     int n;
     // prvky matice v dvourozmernem poli
-    float data;
+    float** data;
 } matice;
 
 /* Definice funkci */
 
-matice inicializace(int m, int n);
-matice nulova(int m, int n);
-matice jednotkova(int m, int n);
+matice* inicializace(int m, int n);
+matice* nulova(int m, int n);
+matice* jednotkova(int m, int n);
 void odstran(matice mat);
-void vypis(matice mat);
+void vypis(matice* mat);
 matice plus(matice mat1, matice mat2);
 matice minus(matice mat1, matice mat2);
 matice nasobeni(matice mat, float skalar);
