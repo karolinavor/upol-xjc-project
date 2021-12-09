@@ -198,34 +198,102 @@ float prvek(matice* mat, int i, int j) {
     return mat->data[i][j];
 };
 
-/*
-
 // funkce, ktera vracı matici, ktera je ulozena v souboru soubor. Kazdy radek souboru reprezentuje radek matice a jednotlive prvky matice jsou oddeleny mezerou.
 matice* nacti_ze_souboru(const char *soubor) {
-    if (soubor == NULL)
-        //ERROR
+    FILE *otevreny_soubor;
+    otevreny_soubor = fopen(soubor,"r");
+    if (otevreny_soubor == NULL) {
+        chyba = CHYBA_OTEVRENI;
+        return NULL;
     }
 
-    obsah = fopen(soubor, "r");
+    int newRows = 0;
+    int newCols = 0;
+    int rows = 0;
+    int cols = 0;
+    char ch;
 
-    obsah = fclose(soubor);
+    while(!feof(otevreny_soubor)) {
+        ch = fgetc(otevreny_soubor);
+        if(ch == '\n')
+        {
+            newRows++;
+            cols=newCols;
+            newCols=0;
+        }
+    }
+    rows = newRows;
+    cols = newCols;
 
+    printf("%d", rows);
+    printf("%d", cols);
 
+    //float n;
+    //fscanf (otevreny_soubor, "%f",&n);
+    //printf("%f", n);
+    /*
+    for (i=0;i<*n;i++) {
+        for(j=0;j<*m;j++) {
+            fscanf (obsah_souboru, "%d", &a[i][j]);
+        }
+    }
+    matice* nova_matice = inicializace(mat->n, mat->m);
+    */
+
+    if (!(fclose(otevreny_soubor) == 0)) {
+        chyba = CHYBA_ZAVRENI;
+        return NULL;
+    }
+
+    chyba = BEZ_CHYBY;
+    return NULL;
 };
 
 // funkce, ktera ulozı matici mat do souboru soubor (ve stejnem formatu, jako v predchozım bodu)
 matice* uloz_do_souboru(matice* mat, const char *soubor) {
-    if (soubor == NULL)
-        //ERROR
+    FILE *otevreny_soubor;
+    otevreny_soubor = fopen(soubor,"w");
+    if (otevreny_soubor == NULL) {
+        chyba = CHYBA_OTEVRENI;
+        return NULL;
     }
 
-    obsah = fopen(soubor, "w");
-
-    obsah = fclose(soubor);
-
-    if (obsah == EOF)
-    {
-        //ERROR
+    for (int i = 0; i < mat->m; i++) {
+        for (int j = 0; j < mat->n; j++) {
+            fprintf(otevreny_soubor,"%f",mat->data[i][j]);
+            fprintf(otevreny_soubor,"%s"," ");
+        }
+        fprintf(otevreny_soubor,"%s","\n");
     }
+
+    if (!(fclose(otevreny_soubor) != 0)) {
+        chyba = CHYBA_ZAVRENI;
+        return NULL;
+    }
+
+    chyba = BEZ_CHYBY;
+    return mat;
 };
- */
+
+void kontrolaAVypis(matice* mat) {
+    switch (chyba) {
+        case CHYBA_TYPU:
+            printf("Chyba pri provadenı operacı s nespravnou velikostı matice.");
+            break;
+        case CHYBA_ALOKACE:
+            printf("Nastala chyba alokace pameti.");
+            break;
+        case CHYBA_OTEVRENI:
+            printf("Nastala chyba pri otevıranı souboru.");
+            break;
+        case CHYBA_ZAVRENI:
+            printf("Nastala chyba pri zavirani souboru.");
+            break;
+        case CHYBA_JINA:
+            printf("Nastala jina chyba.");
+            break;
+        case BEZ_CHYBY:
+            vypis(mat);
+            break;
+    }
+}

@@ -13,7 +13,7 @@
 
 int main()
 {
-    matice *mat1, *mat2, *mat3, *mat4, *mat5, *mat6;
+    matice *mat1, *mat2, *mat3, *mat4, *mat5, *mat6, *mat7;
 
     mat1 = jednotkova(3, 4);
 
@@ -25,6 +25,18 @@ int main()
 
     printf("Matice mat1: \n");
     vypis(mat1);
+    printf("\n");
+
+    printf("Velikost matice mat1 v dimenzi 0 (radky): \n");
+    printf("%d",velikost(mat1, 0));
+    printf("\n\n");
+
+    printf("Velikost matice mat1 v dimenzi 1(sloupce): \n");
+    printf("%d",velikost(mat1, 1));
+    printf("\n\n");
+
+    printf("Prvek matice mat1 na pozici[0][1]: \n");
+    printf("%f",prvek(mat1, 0, 1));
     printf("\n\n");
 
     mat2 = transpozice(mat1);
@@ -42,54 +54,38 @@ int main()
     vypis(mat4);
     printf("\n\n");
 
-
     mat5 = krat(mat1, mat2);
     printf("Matice mat1 vynasobena transponovanou matici mat1: \n");
-    switch (chyba) {
-        case CHYBA_TYPU:
-            printf("S maticemi neni mozne provest nasobeni.");
-            break;
-        case CHYBA_ALOKACE:
-            printf("Nastala chyba alokace pameti.");
-            break;
-        case CHYBA_OTEVRENI:
-            printf("Nastala chyba chyba pri otevıranı souboru.");
-            break;
-        case CHYBA_ZAVRENI:
-            printf("Nastala chyba chyba pri zavirani souboru.");
-            break;
-        case CHYBA_JINA:
-            printf("Nastala jina chyba.");
-            break;
-        case BEZ_CHYBY:
-            vypis(mat5);
-            break;
-    }
+    kontrolaAVypis(mat5);
     printf("\n\n");
 
     mat6 = krat(mat1, mat1);
     printf("Matice mat1 vynasobena matici mat1: \n");
-    switch (chyba) {
-        case CHYBA_TYPU:
-            printf("S maticemi neni mozne provest nasobeni.");
-            break;
-        case CHYBA_ALOKACE:
-            printf("Nastala chyba alokace pameti.");
-            break;
-        case CHYBA_OTEVRENI:
-            printf("Nastala chyba chyba pri otevıranı souboru.");
-            break;
-        case CHYBA_ZAVRENI:
-            printf("Nastala chyba chyba pri zavirani souboru.");
-            break;
-        case CHYBA_JINA:
-            printf("Nastala jina chyba.");
-            break;
-        case BEZ_CHYBY:
-            vypis(mat6);
-            break;
-    }
+    kontrolaAVypis(mat6);
     printf("\n\n");
+
+    printf("Matice mat1: \n");
+    vypis(mat1);
+    printf("\n");
+
+    printf("Zmena hodnoty prvku matice mat1 na pozici[0][1] na 10: \n");
+    nastav_prvek(mat1, 0, 1, 10.0);
+    vypis(mat1);
+    printf("\n\n");
+
+    printf("Matice nactena ze souboru soubor.txt: \n");
+    char *soubor = "./soubor.txt";
+    mat7 = nacti_ze_souboru(soubor);
+    //kontrolaAVypis(mat7);
+    printf("\n\n");
+
+    printf("Matice mat1 ulozena do souboru soubor2.txt\n");
+    char *soubor2 = "./soubor2.txt";
+    uloz_do_souboru(mat1,soubor2);
+    kontrolaAVypis(mat1);
+    printf("\n\n");
+
+    // chybi minus
 
     odstran(mat1);
     odstran(mat2);
@@ -97,6 +93,7 @@ int main()
     odstran(mat4);
     odstran(mat5);
     odstran(mat6);
+    odstran(mat7);
 
     return 0;
 }

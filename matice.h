@@ -7,7 +7,7 @@
 * Modul pro praci s maticemi
 **/
 
-/* Konstanty */
+/* Chybove kody */
 
 #define BEZ_CHYBY 0
 #define CHYBA_ALOKACE -1
@@ -49,3 +49,5 @@ matice* uloz_do_souboru(matice* mat, const char *soubor);
 int velikost(matice* mat, int dimenze);
 float prvek(matice* mat, int i, int j);
 void nastav_prvek(matice* mat, int i, int j, float hodnota);
+
+void kontrolaAVypis(matice* mat);
