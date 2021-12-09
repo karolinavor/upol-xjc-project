@@ -202,43 +202,43 @@ float prvek(matice* mat, int i, int j) {
 matice* nacti_ze_souboru(const char *soubor) {
     FILE *otevreny_soubor;
     otevreny_soubor = fopen(soubor,"r");
-    if (otevreny_soubor == NULL) {
+    if (otevreny_soubor == NULL || !otevreny_soubor) {
         chyba = CHYBA_OTEVRENI;
         return NULL;
     }
 
-    int newRows = 0;
-    int newCols = 0;
     int rows = 0;
     int cols = 0;
     char ch;
+    float f;
 
     while(!feof(otevreny_soubor)) {
         ch = fgetc(otevreny_soubor);
         if(ch == '\n')
         {
-            newRows++;
-            cols=newCols;
-            newCols=0;
+            rows++;
         }
     }
-    rows = newRows;
-    cols = newCols;
 
-    printf("%d", rows);
-    printf("%d", cols);
+    rewind(otevreny_soubor);
 
-    //float n;
-    //fscanf (otevreny_soubor, "%f",&n);
-    //printf("%f", n);
-    /*
-    for (i=0;i<*n;i++) {
-        for(j=0;j<*m;j++) {
-            fscanf (obsah_souboru, "%d", &a[i][j]);
+    while(!feof(otevreny_soubor)) {
+        fscanf(otevreny_soubor, "%f", &f);
+        cols++;
+    }
+
+    cols = cols/rows;
+
+    matice* nova_matice = inicializace(rows, cols);
+
+    rewind(otevreny_soubor);
+
+    for (int i = 0; i < rows; i++) {
+        for(int j = 0; j < cols; j++) {
+            fscanf (otevreny_soubor, "%f", &f);
+            nova_matice->data[i][j] = f;
         }
     }
-    matice* nova_matice = inicializace(mat->n, mat->m);
-    */
 
     if (!(fclose(otevreny_soubor) == 0)) {
         chyba = CHYBA_ZAVRENI;
@@ -246,7 +246,7 @@ matice* nacti_ze_souboru(const char *soubor) {
     }
 
     chyba = BEZ_CHYBY;
-    return NULL;
+    return nova_matice;
 };
 
 // funkce, ktera ulozı matici mat do souboru soubor (ve stejnem formatu, jako v predchozım bodu)
@@ -266,7 +266,7 @@ matice* uloz_do_souboru(matice* mat, const char *soubor) {
         fprintf(otevreny_soubor,"%s","\n");
     }
 
-    if (!(fclose(otevreny_soubor) != 0)) {
+    if (!(fclose(otevreny_soubor) == 0)) {
         chyba = CHYBA_ZAVRENI;
         return NULL;
     }

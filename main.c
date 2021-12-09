@@ -76,7 +76,7 @@ int main()
     printf("Matice nactena ze souboru soubor.txt: \n");
     char *soubor = "./soubor.txt";
     mat7 = nacti_ze_souboru(soubor);
-    //kontrolaAVypis(mat7);
+    kontrolaAVypis(mat7);
     printf("\n\n");
 
     printf("Matice mat1 ulozena do souboru soubor2.txt\n");
@@ -85,15 +85,13 @@ int main()
     kontrolaAVypis(mat1);
     printf("\n\n");
 
-    // chybi minus
-
     odstran(mat1);
     odstran(mat2);
     odstran(mat3);
     odstran(mat4);
     odstran(mat5);
     odstran(mat6);
-    odstran(mat7);
+    //odstran(mat7);
 
     return 0;
 }
