@@ -71,13 +71,18 @@ matice* nulova(int m, int n) {
 
 // funkce, ktera dealokuje pamet alokovanou pro matici mat
 void odstran(matice* mat) {
-    for (int i = 0; i < mat->m; i++)
-    {
-        free(mat->data[i]);
+    // kontrola existence matice
+    if (mat) {
+        for (int i = 0; i < mat->m; i++)
+        {
+            free(mat->data[i]);
+        }
+        free(mat->data);
+        free(mat);
+        chyba = BEZ_CHYBY;
+    } else {
+        chyba = CHYBA_ALOKACE;
     }
-    free(mat->data);
-    free(mat);
-    chyba = BEZ_CHYBY;
 };
 
 // funkce pro vypis matice do konzole
@@ -97,12 +102,10 @@ void vypis(matice* mat) {
 void nastav_prvek(matice* mat, int i, int j, float hodnota) {
     if (!(0 <= i <= mat->m) || !(0 <= j <= mat->n)) {
         chyba = CHYBA_TYPU;
-        return;
     }
 
     mat->data[i][j] = hodnota;
     chyba = BEZ_CHYBY;
-    return;
 };
 
 // funkce, ktera vracı matici, ktera vznikla transpozicı matice mat
@@ -155,6 +158,11 @@ matice* nasobeni(matice* mat, float skalar) {
 
 // funkce, ktera vracı soucin matic mat1 a mat2
 matice* krat(matice* mat1, matice* mat2) {
+    if (mat1->m == mat2->m || mat1->n == mat2->n) {
+        chyba = CHYBA_TYPU;
+        return NULL;
+    }
+
     matice* vynasobena_matice = inicializace(mat1->m, mat2->n);
     for (int i = 0; i < mat1->m; i++) {
         for (int j = 0; j < mat2->n; j++) {
@@ -175,8 +183,8 @@ int velikost(matice* mat, int dimenze) {
     } else if (dimenze == 1) {
         return mat->n;
     } else {
-        chyba = JINA_CHYBA;
-        return;
+        chyba = CHYBA_JINA;
+        return -1;
     }
 };
 
@@ -184,7 +192,7 @@ int velikost(matice* mat, int dimenze) {
 float prvek(matice* mat, int i, int j) {
     if (!(0 <= i <= mat->m) || !(0 <= j <= mat->n)) {
         chyba = CHYBA_TYPU;
-        return;
+        return -1;
     }
 
     return mat->data[i][j];

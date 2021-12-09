@@ -67,7 +67,6 @@ int main()
     }
     printf("\n\n");
 
-    /*
     mat6 = krat(mat1, mat1);
     printf("Matice mat1 vynasobena matici mat1: \n");
     switch (chyba) {
@@ -78,27 +77,26 @@ int main()
             printf("Nastala chyba alokace pameti.");
             break;
         case CHYBA_OTEVRENI:
-            printf("Nastala chyba chyba pri otevıranı souboru.);
+            printf("Nastala chyba chyba pri otevıranı souboru.");
             break;
-        case CHYBA_UZAVRENI:
+        case CHYBA_ZAVRENI:
             printf("Nastala chyba chyba pri zavirani souboru.");
             break;
         case CHYBA_JINA:
             printf("Nastala jina chyba.");
             break;
         case BEZ_CHYBY:
-            vypis(mat5);
+            vypis(mat6);
             break;
     }
     printf("\n\n");
-    */
 
     odstran(mat1);
     odstran(mat2);
     odstran(mat3);
     odstran(mat4);
     odstran(mat5);
-    //odstran(mat6);
+    odstran(mat6);
 
     return 0;
 }
