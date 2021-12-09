@@ -9,12 +9,12 @@
 
 /* Konstanty */
 
-#define BEZ_CHYBY "Bez chyby.\n";
-#define CHYBA_ALOKACE "Chyba alokace.\n";
-#define CHYBA_OTEVRENI "Chyba otevreni.\n";
-#define CHYBA_ZAVRENI "Chyba zavreni.\n";
-#define CHYBA_TYPU "Chyba typu.\n";
-#define CHYBA_JINA "Chyba jina.\n";
+#define BEZ_CHYBY 0
+#define CHYBA_ALOKACE -1
+#define CHYBA_OTEVRENI -2
+#define CHYBA_ZAVRENI -3
+#define CHYBA_TYPU -4
+#define CHYBA_JINA -5
 
 /* Globalni promenne */
 
