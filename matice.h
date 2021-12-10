@@ -49,5 +49,4 @@ matice* uloz_do_souboru(matice* mat, const char *soubor);
 int velikost(matice* mat, int dimenze);
 float prvek(matice* mat, int i, int j);
 void nastav_prvek(matice* mat, int i, int j, float hodnota);
-
-void kontrolaAVypis(matice* mat);
+int kontrolaChyb();
