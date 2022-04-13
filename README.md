@@ -1,4 +1,4 @@
-# xjc-project
+# upol-xjc-project
 
 #### Spuštění projektu
 
