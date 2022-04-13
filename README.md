@@ -1,11 +1,12 @@
 # xjc-project
 
-#### Build and run project
+#### Spuštění projektu
 
 ``` 
 gcc main.c matice.c -o main && ./main 
 ```
 
+#### Zadání projektu
 
 Naprogramujte modul (bez funkce main()) pro praci s maticemi, jejichz prvky jsou realna
 cisla (cisla typu float). Modul se bude skladat ze zdrojoveho kodu (soubor matice.c)
