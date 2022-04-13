@@ -16,11 +16,6 @@
 #define CHYBA_TYPU -4
 #define CHYBA_JINA -5
 
-/* Globalni promenne */
-
-// uchovava, zda v poslednı operaci nedoslo k nejake chybe
-int chyba;
-
 /* Definice struktury */
 
 typedef struct {

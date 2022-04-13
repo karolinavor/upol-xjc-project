@@ -11,6 +11,11 @@
 #include <stdlib.h>
 #include "matice.h"
 
+/* Globalni promenne */
+
+// uchovava, zda v poslednı operaci nedoslo k nejake chybe
+int chyba;
+
 // funkce vytvori matici typu m × n, vcetne alokovanı pole pro prvky matice
 matice inicializace(int m, int n) {
     matice nova_matice;
